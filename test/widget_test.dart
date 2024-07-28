@@ -8,12 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:stream_bloc/1_stream_learn.dart';
 
 void main() {
-  Stream<int> countStream(int max) async* {
-    for (int i = 0; i < max; i++) {
-      yield i;
-    }
-  }
 }

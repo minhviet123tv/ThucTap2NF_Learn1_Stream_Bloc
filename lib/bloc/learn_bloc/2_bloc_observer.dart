@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stream_bloc/2_cubit_learn.dart';
+
+import '1_cubit_learn.dart';
 
 ///1.1 Cubit dùng cả onChange và onError
 class CounterCubit4 extends Cubit<int> {

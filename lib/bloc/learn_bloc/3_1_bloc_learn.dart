@@ -57,10 +57,10 @@ class CounterBloc extends Bloc<CounterEvent, int> {
 
   // onError: chỉ ra rằng đã xảy ra lỗi (Hoạt động cùng lúc với onChange)
   @override
-    void onError(Object error, StackTrace stackTrace) {
-      super.onError(error, stackTrace);
-      print('$error, $stackTrace - by onChange in Bloc');
-    }
+  void onError(Object error, StackTrace stackTrace) {
+    super.onError(error, stackTrace);
+    print('$error, $stackTrace - by onChange in Bloc');
+  }
 
 
 }
@@ -145,7 +145,7 @@ class SimpleBlocObserver extends BlocObserver {
 
 //III.2 Dùng SimpleBlocObserver
 void main() {
-  // Bloc.observer = SimpleBlocObserver();
+  Bloc.observer = SimpleBlocObserver();
   CounterBloc()
     ..add(CounterIncrementPressed(1))
     ..close();

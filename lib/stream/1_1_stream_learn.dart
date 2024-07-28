@@ -5,16 +5,6 @@ import 'package:flutter/material.dart';
 https://bloclibrary.dev/bloc-concepts/#using-a-bloc
  */
 
-void main() async {
-  // Print các phần tử bên trong stream
-  await countStream(5).forEach((element) {
-    print(element);
-  });
-
-  // Tổng các phần tử bên trong Stream
-  print(await sumStream(countStream(10)));
-}
-
 //1. Stream: Luồng dữ liệu
 Stream<int> countStream(int max) async* {
   for (int i = 0; i < max; i++) {
@@ -29,4 +19,14 @@ Future<int> sumStream(Stream<int> stream) async {
     sum += element;
   });
   return sum;
+}
+
+void main() async {
+  // Print các phần tử bên trong stream
+  await countStream(5).forEach((element) {
+    print(element);
+  });
+
+  // Tổng các phần tử bên trong Stream
+  print(await sumStream(countStream(10)));
 }
