@@ -48,7 +48,7 @@ class _CounterPageState extends State<CounterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //II. BlocBuilder: sử dụng Bloc (CounterProvider) theo cách lấy và sử dụng thông thường
+      //II. BlocBuilder: sử dụng dữ liệu của Bloc (CounterProvider) để xây dựng UI và sử dụng logic
       body: BlocBuilder<CounterBloc, int>(
 
         builder: (BuildContext context, int dataState) {
@@ -94,10 +94,10 @@ class _CounterPageState extends State<CounterPage> {
                 height: 10,
               ),
 
-              //III. BlocSelector: Sử dụng dữ liệu của Bloc để tạo trạng thái (bool, enum ...) rồi sử dụng các trạng thái đó
+              //III. BlocSelector: Sử dụng dữ liệu của Bloc để tạo ra trạng thái (bool, enum ...) rồi sử dụng các trạng thái đó
               BlocSelector<CounterBloc, int, bool>(
 
-                //1. Sử dụng dữ liệu (int) để tạo các trạng thái kiểu bool
+                //1. Sử dụng dữ liệu (int) để tạo các trạng thái (logic) kiểu bool
                 selector: (data) {
                   if (data > 5) {
                     return true;
@@ -106,7 +106,7 @@ class _CounterPageState extends State<CounterPage> {
                   }
                 },
 
-                //2. Sử dụng trạng thái (state là kiểu bool)
+                //2. Xây dựng UI và sử dụng trạng thái đã tạo ở selector (state là kiểu bool)
                 builder: (context, state) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -195,20 +195,13 @@ class _CounterPageState extends State<CounterPage> {
 
                 //1. Sử dụng dữ liệu của Bloc cho UI
                 builder: (context, state) {
-                  if (state > 5) {
-                    return const Text(
-                      "> 5",
-                      style: TextStyle(fontSize: 20),
-                    );
-                  } else {
-                    return Text(
-                      "$state",
-                      style: TextStyle(fontSize: 20),
-                    );
-                  }
+                  return Text(
+                    "$state",
+                    style: const TextStyle(fontSize: 20),
+                  );
                 },
 
-                //2. Xử lý logic phụ thuộc trạng thái dữ liệu của Bloc đó
+                //2. Tạo xử lý logic theo trạng thái dữ liệu của Bloc đó (thực hiện mỗi lần dữ liệu thay đổi)
                 listener: (context, state) {
                   if (state > 5) {
                     print(">5");
@@ -220,7 +213,7 @@ class _CounterPageState extends State<CounterPage> {
               //V. BlocListener: Tạo mình logic theo trạng thái của dữ liệu của 1 Bloc, vị trí: đặt trong widget tree
               BlocListener<CounterBloc, int>(
 
-                //listenWhen: Sử dụng giá trị hiện tại và trước đó của bloc | Trả về true hoặc false để quyết định có sử dụng chức năng listener hay không
+                // listenWhen: Sử dụng giá trị hiện tại và trước đó của bloc | Trả về true hoặc false để quyết định có sử dụng chức năng listener hay không
                 listenWhen: (previous, current) {
                   print('$previous | $current');
                   if(previous == current){
@@ -256,7 +249,6 @@ class _CounterPageState extends State<CounterPage> {
                 ],
                 child: const Text("Child of MultiBlocListener"),
               ),
-
             ],
           );
         },
