@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blue,
       ),
       body: GestureDetector(
-        onTap: (){
+        onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
         },
         child: SingleChildScrollView(
@@ -56,11 +56,15 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-
                 //I. Add number
                 StreamBuilder(
                   stream: myStreamNumber.stream,
-                  builder: (context, snapshot) => snapshot.hasData ? Text(snapshot.data.toString(), style: textStyle1,) : const Text("Dữ liệu hiện tại của MyStreamNumber"),
+                  builder: (context, snapshot) => snapshot.hasData
+                      ? Text(
+                          snapshot.data.toString(),
+                          style: textStyle1,
+                        )
+                      : const Text("Dữ liệu hiện tại của MyStreamNumber"),
                 ),
                 Center(
                   child: ElevatedButton(
@@ -83,30 +87,42 @@ class _HomePageState extends State<HomePage> {
                 StreamBuilder(
                   stream: myStreamString.stream,
                   builder: (context, snapshot) {
-                    if(snapshot.hasData){
-                      return Text('Current data: ${snapshot.data.toString()}', style: textStyle1,);
+                    if (snapshot.hasData) {
+                      return Text(
+                        'Current data: ${snapshot.data.toString()}',
+                        style: textStyle1,
+                      );
                     } else {
                       return const Text("Dữ liệu hiện tại của MyStreamString");
                     }
-                  },),
+                  },
+                ),
                 StreamBuilder(
                   stream: myStreamString.stream,
                   builder: (context, snapshot) {
-                    if(snapshot.hasData && snapshot.data[0].toString().isNotEmpty){
-                      return Text('First data: ${snapshot.data[0].toString()}', style: textStyle1,);
+                    if (snapshot.hasData && snapshot.data[0].toString().isNotEmpty) {
+                      return Text(
+                        'First data: ${snapshot.data[0].toString()}',
+                        style: textStyle1,
+                      );
                     } else {
                       return const Text("Dữ liệu 0 của MyStreamString");
                     }
-                  },),
+                  },
+                ),
                 StreamBuilder(
                   stream: myStreamString.stream,
                   builder: (context, snapshot) {
-                    if(snapshot.hasData && snapshot.data[1].toString().isNotEmpty){
-                      return Text('Second data: ${snapshot.data[1].toString()}', style: textStyle1,);
+                    if (snapshot.hasData && snapshot.data[1].toString().isNotEmpty) {
+                      return Text(
+                        'Second data: ${snapshot.data[1].toString()}',
+                        style: textStyle1,
+                      );
                     } else {
                       return const Text("Dữ liệu 1 của MyStreamString");
                     }
-                  },),
+                  },
+                ),
 
                 Center(
                   child: ElevatedButton(
@@ -119,7 +135,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),

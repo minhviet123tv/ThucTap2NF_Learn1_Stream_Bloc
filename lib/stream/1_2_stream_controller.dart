@@ -1,5 +1,6 @@
 import 'dart:async';
 
+//I. Stream quản lý 1 number
 class MyStreamNumber {
   //1. Tạo StreamController: Dùng ở nhiều chỗ (UI) thì bắt buộc phải đặt <>.broadcast() (nếu không sẽ bị lỗi)
   // Nếu chỉ đặt 1 nơi để sử dụng (UI) thì chỉ cần đặt StreamController<int>();
@@ -23,7 +24,7 @@ class MyStreamNumber {
   });
 
   //4. Lấy dữ liệu ra (sau khi StreamTransformer)
-  Stream get getCounterStream {
+  Stream get getByTranformer {
     return controller.stream.transform(_counterTranformer); //Nếu không dùng Transformer thì chỉ cần: _counterController.stream
   }
 
@@ -34,6 +35,8 @@ class MyStreamNumber {
 
 }
 
+
+//II. Stream quản lý 1 String
 class MyStreamString {
   StreamController controller = StreamController<String>.broadcast(); // <>.broadcast() : Dùng ở nhiều chỗ thì bắt buộc phải đặt (nếu không sẽ bị lỗi)
   Sink get sink => controller.sink;
